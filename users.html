@@ -41,7 +41,7 @@
         <li><a href="#!">Second Link</a></li>
         <li><div class="divider"></div></li>
         <li><a class="subheader">pages:</a></li>
-        <li><a class="waves-effect" href="#!">Home</a></li>
+        <li><a class="waves-effect" href="/index.html">Home</a></li>
         <li><a class="waves-effect" href="/users.html">User</a></li>
       </ul>
 
@@ -51,11 +51,11 @@
 
 <!-- ----content section ---start------ -->
 
-<section id="top_actions_section">
+<section id="top_actions_section" class="row m-b-0 container">
 
     <!-- ---add button--- -->
 
-    <div class="p-l-10 p-r-10 p-t-10">
+    <div class="p-l-10 p-r-10 p-t-10 col s12 m4 l2">
         <button class="waves-effect waves-light btn blue darken-2 p-l-30 p-r-30 w-full rounded_pill flex-c">
             <i class="material-icons m-r-5">add</i>
             Add User
@@ -63,8 +63,8 @@
     </div>
 
     <!-- ----search section---- -->
-    
-    <div class="row">
+
+    <div class="row  col s12 m8 l8 m-b-0">
         <div class="input-field col s12">
             <input id="search" type="text" class="validate">
             <label for="search">
@@ -73,13 +73,179 @@
             </label> 
         </div>
     </div>
+    <div class="col l2 hide-on-med-and-down"></div>
 
 </section>
 
+<section class="user_list_section">
+    <ul class="collapsible hide-on-med-and-up">
+        <li class="users_list_item">
+            <div class="collapsible-header">
+                <i class="material-icons blue-text darken-2 users_list_arrow_icon trans-0-2">
+                    arrow_drop_down_circle
+                </i>Shaghayegh Veisi
+            </div>
+            <div class="collapsible-body">
+                <div class="p-all-5">
+                    <span class="f-bold">Username : </span>
+                    <span>shghyghV</span>
+                </div>
+                <div class="p-all-5">
+                    <span class="f-bold">Email : </span>
+                    <span>shaghayegh.vsii@gmailcom</span>
+                </div>
+                <div class="p-all-5">
+                    <span class="f-bold">Address : </span>
+                    <span>berlin - example street</span>
+                </div>
+                <div class="p-all-5 flex-l-m">
+                    <span class="f-bold">Action : </span>
+                    <span>
+                        <i class="material-icons red-text accent-4 m-l-5 m-r-5">
+                            delete_forever
+                        </i>
+                        <i class="material-icons amber-text accent-4 m-l-5 m-r-5">
+                            edit
+                        </i></span>
+                </div>
+            </div>
+        </li>
+        <li class="users_list_item">
+            <div class="collapsible-header">
+                <i class="material-icons blue-text darken-2 users_list_arrow_icon trans-0-2">
+                    arrow_drop_down_circle
+                </i>Qasem Basaki
+            </div>
+            <div class="collapsible-body">
+                <div class="p-all-5">
+                    <span class="f-bold">Username : </span>
+                    <span>QasemB</span>
+                </div>
+                <div class="p-all-5">
+                    <span class="f-bold">Email : </span>
+                    <span>Qasembasaki@gmailcom</span>
+                </div>
+                <div class="p-all-5">
+                    <span class="f-bold">Address : </span>
+                    <span>kanada - example street</span>
+                </div>
+                <div class="p-all-5 flex-l-m">
+                    <span class="f-bold">Action : </span>
+                    <span>
+                        <i class="material-icons red-text accent-4 m-l-5 m-r-5">
+                            delete_forever
+                        </i>
+                        <i class="material-icons amber-text accent-4 m-l-5 m-r-5">
+                            edit
+                        </i>
+                    </span>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <div class="hide-on-med-and-down show-on-medium-and-up container">
+        <table class="striped highlight">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Name</td>
+                    <td>Username</td>
+                    <td>Email</td>
+                    <td>Address</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Ali binesh</td>
+                    <td>AliB</td>
+                    <td>ali.binesh77@gmail.com</td>
+                    <td>japan-example street</td>
+                    <td>
+                        <i class="material-icons red-text accent-4 m-l-5 m-r-5">
+                        delete_forever
+                    </i>
+                    <i class="material-icons amber-text accent-4 m-l-5 m-r-5">
+                        edit
+                    </i>
+                </td>
+                </tr>
+
+                <tr>
+                    <td>1</td>
+                    <td>Qasem basaki</td>
+                    <td>QasemB</td>
+                    <td>Qasembasaki@gmail.com</td>
+                    <td>kanada-example street</td>
+                    <td>
+                        <i class="material-icons red-text accent-4 m-l-5 m-r-5">
+                        delete_forever
+                    </i>
+                    <i class="material-icons amber-text accent-4 m-l-5 m-r-5">
+                        edit
+                    </i>
+                </td>
+                </tr>
+
+                <tr>
+                    <td>1</td>
+                    <td>shaghayegh veisi</td>
+                    <td>shghyghV</td>
+                    <td>shaghayegh.vsii@gmail.com</td>
+                    <td>berlin-example street</td>
+                    <td>
+                        <i class="material-icons red-text accent-4 m-l-5 m-r-5">
+                        delete_forever
+                    </i>
+                    <i class="material-icons amber-text accent-4 m-l-5 m-r-5">
+                        edit
+                    </i>
+                </td>
+                </tr>
+
+                <tr>
+                    <td>1</td>
+                    <td>Roshanak keivani</td>
+                    <td>roshanak_Keivani</td>
+                    <td>roshanak_Keivani@gmail.com</td>
+                    <td>iran-example street</td>
+                    <td>
+                        <i class="material-icons red-text accent-4 m-l-5 m-r-5">
+                        delete_forever
+                    </i>
+                    <i class="material-icons amber-text accent-4 m-l-5 m-r-5">
+                        edit
+                    </i>
+                </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination_container container p-l-9 p-r-9 p-t-15 p-b-10 flex-sb-m pos-fixed left-0 right-0 bottom-0 z-depth-4 rounded_top_30">
+       <div class="pagination_item_counts flex-l p-l-10 flex-l-m">
+        showing
+        <span class="m-l-5 m-r-5 max-w-50">
+            <input type="number" class="blue-text darken-2 no-border center-align m-b-0" value="10">
+        </span>
+        of
+        <span class="blue-text darken-2 m-l-5 m-r-5">100</span>
+       </div> 
+       <div class="pgination_buttons">
+        <i class="material-icons blue darken-2 m-l-5 m-r-5 p-l-5 p-r-5 p-t-1 p-b-3 waves-effect waves-light white-text rounded_pill">keyboard_arrow_left</i>
+        <i class="material-icons blue darken-2 m-l-5 m-r-5 p-l-5 p-r-5 p-t-1 p-b-3 waves-effect waves-light white-text rounded_pill">keyboard_arrow_right</i>
+       </div>
+    </div>
+
+</section>
 <!-- ----content section ---end------ -->
 
 
     <script src="/assets/materialize/js/materialize.min.js"></script>
     <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/user.js"></script>
 </body>
 </html>
