@@ -245,6 +245,12 @@
     </div>
 
 </section>
+
+<section id="test_section" class="grey" x-data="{massage:'I Love Programing'}">
+    <span x-text="massage" class="red"></span>
+    <button class="btn brown" x-on:click="massage='I Love Alpine'">click</button>
+</section>
+
 <div class="add_user_modal_back dis-none"></div>
 <div class="add_user_modal container rounded_top_30 trans-0-3">
     <div class="row p-t-10 p-b-10 p-r-40 p-l-40 center-on-small-only">
@@ -275,7 +281,7 @@
 
 <!-- ----content section ---end------ -->
 
-
+    <script defer src="/assets/js/alpine.js"></script>
     <script src="/assets/materialize/js/materialize.min.js"></script>
     <script src="/assets/js/app.js"></script>
     <script src="/assets/js/user.js"></script>
