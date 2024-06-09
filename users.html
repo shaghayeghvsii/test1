@@ -11,7 +11,7 @@
     <link rel="icon"  type="image/x-icon" href="/assets/img/icon (1).ico">
     <title>my project</title>
 </head>
-<body dir="rtl">
+<body x-data="usersData">
 
 <!-- ----navbar section ---start------ -->
 
@@ -79,153 +79,101 @@
 
 </section>
 
-<section class="user_list_section">
+
+<!-- <template x-if="isloading"> -->
+    <div x-show="isloading" class="center-align">
+        <div class="preloader-wrapper small active">
+            <div class="spinner-layer spinner-green-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+    </div>
+<!-- </template> -->
+
+
+
+
+<section class="user_list_section" x-init="getUsers()">
     <ul class="collapsible hide-on-med-and-up">
-        <li class="users_list_item">
-            <div class="collapsible-header">
-                <i class="material-icons blue-text darken-2 users_list_arrow_icon trans-0-2">
-                    arrow_drop_down_circle
-                </i>شقایق ویسی
-            </div>
-            <div class="collapsible-body">
-                <div class="p-all-5">
-                    <span class="f-bold">Username : </span>
-                    <span>shghyghV</span>
+        <template x-for="user in users">
+            <li class="users_list_item">
+                <div class="collapsible-header">
+                    <i class="material-icons blue-text darken-2 users_list_arrow_icon trans-0-2">
+                        arrow_drop_down_circle
+                    </i>
+                    <span x-text="user.name"></span>
                 </div>
-                <div class="p-all-5">
-                    <span class="f-bold">Email : </span>
-                    <span>shaghayegh.vsii@gmailcom</span>
+                <div class="collapsible-body">
+                    <div class="p-all-5">
+                        <span class="f-bold">Username : </span>
+                        <span x-text="user.username"></span>
+                    </div>
+                    <div class="p-all-5">
+                        <span class="f-bold">Email : </span>
+                        <span x-text="user.email"></span>
+                    </div>
+                    <div class="p-all-5">
+                        <span class="f-bold">Address : </span>
+                        <span x-text="user.address.city+' - '+user.address.street"></span>
+                    </div>
+                    <div class="p-all-5 flex-l-m">
+                        <span class="f-bold">Action : </span>
+                        <span>
+                            <i class="material-icons red-text accent-4 m-l-5 m-r-5">
+                                delete_forever
+                            </i>
+                            <i class="material-icons amber-text accent-4 m-l-5 m-r-5">
+                                edit
+                            </i></span>
+                    </div>
                 </div>
-                <div class="p-all-5">
-                    <span class="f-bold">Address : </span>
-                    <span>berlin - example street</span>
-                </div>
-                <div class="p-all-5 flex-l-m">
-                    <span class="f-bold">Action : </span>
-                    <span>
-                        <i class="material-icons red-text accent-4 m-l-5 m-r-5">
-                            delete_forever
-                        </i>
-                        <i class="material-icons amber-text accent-4 m-l-5 m-r-5">
-                            edit
-                        </i></span>
-                </div>
-            </div>
-        </li>
-        <li class="users_list_item">
-            <div class="collapsible-header">
-                <i class="material-icons blue-text darken-2 users_list_arrow_icon trans-0-2">
-                    arrow_drop_down_circle
-                </i>قاسم بساکی
-            </div>
-            <div class="collapsible-body">
-                <div class="p-all-5">
-                    <span class="f-bold">Username : </span>
-                    <span>QasemB</span>
-                </div>
-                <div class="p-all-5">
-                    <span class="f-bold">Email : </span>
-                    <span>Qasembasaki@gmailcom</span>
-                </div>
-                <div class="p-all-5">
-                    <span class="f-bold">Address : </span>
-                    <span>canada - example street</span>
-                </div>
-                <div class="p-all-5 flex-l-m">
-                    <span class="f-bold">Action : </span>
-                    <span>
-                        <i class="material-icons red-text accent-4 m-l-5 m-r-5">
-                            delete_forever
-                        </i>
-                        <i class="material-icons amber-text accent-4 m-l-5 m-r-5">
-                            edit
-                        </i>
-                    </span>
-                </div>
-            </div>
-        </li>
+            </li>
+        </template>
     </ul>
 
+
+
     <div class="hide-on-med-and-down show-on-medium-and-up container">
-        <table class="striped highlight ">
+        <table class="striped highlight centered">
             <thead>
                 <tr>
-                    <td>#</td>
-                    <td>Name</td>
-                    <td>Username</td>
-                    <td>Email</td>
-                    <td>Address</td>
-                    <td>Action</td>
+                    <td class="f-bold center-align">#</td>
+                    <td class="f-bold center-align">Name</td>
+                    <td class="f-bold center-align">Username</td>
+                    <td class="f-bold center-align">Email</td>
+                    <td class="f-bold center-align">Address</td>
+                    <td class="f-bold center-align">Action</td>
                 </tr>
             </thead>
-            <tbody class="desktop_table_body">
-                <tr>
-                    <td>1</td>
-                    <td>علی بینش</td>
-                    <td>AliB</td>
-                    <td>ali.binesh77@gmail.com</td>
-                    <td>japan-example street</td>
-                    <td>
-                        <i class="material-icons red-text accent-4 m-l-5 m-r-5">
-                        delete_forever
-                        </i>
-                        <i class="material-icons amber-text accent-4 m-l-5 m-r-5">
-                        edit
-                        </i>
-                </td>
-                </tr>
+            <tbody class="desktop_table_body ">
+                <template x-for="user in users">
+                        <tr>
+                            <td x-text="user.id"></td>
+                            <td x-text="user.name"></td>
+                            <td x-text="user.username"></td>
+                            <td x-text="user.email"></td>
+                            <td x-text="user.address.city+' - '+user.address.street"></td>
+                            <td>
+                                <i class="material-icons red-text accent-4 m-l-5 m-r-5">
+                                delete_forever
+                                </i>
+                                <i class="material-icons amber-text accent-4 m-l-5 m-r-5">
+                                edit
+                                </i>
+                        </td>
+                    </tr>
+                </template>
+        </tbody>
+    </table>
+</div>
 
-                <tr>
-                    <td>1</td>
-                    <td>قاسم بساکی</td>
-                    <td>QasemB</td>
-                    <td>Qasembasaki@gmail.com</td>
-                    <td>kanada-example street</td>
-                    <td>
-                        <i class="material-icons red-text accent-4 m-l-5 m-r-5">
-                        delete_forever
-                    </i>
-                    <i class="material-icons amber-text accent-4 m-l-5 m-r-5">
-                        edit
-                    </i>
-                </td>
-                </tr>
 
-                <tr>
-                    <td>1</td>
-                    <td>شقایق ویسی</td>
-                    <td>shghyghV</td>
-                    <td>shaghayegh.vsii@gmail.com</td>
-                    <td>berlin-example street</td>
-                    <td>
-                        <i class="material-icons red-text accent-4 m-l-5 m-r-5">
-                        delete_forever
-                    </i>
-                    <i class="material-icons amber-text accent-4 m-l-5 m-r-5">
-                        edit
-                    </i>
-                </td>
-                </tr>
-
-                <tr>
-                    <td>1</td>
-                    <td>روشنک کشاورز</td>
-                    <td>roshanak_Keivani</td>
-                    <td>roshanak_Keivani@gmail.com</td>
-                    <td>iran-example street</td>
-                    <td>
-                        <i class="material-icons red-text accent-4 m-l-5 m-r-5">
-                        delete_forever
-                    </i>
-                    <i class="material-icons amber-text accent-4 m-l-5 m-r-5">
-                        edit
-                    </i>
-                </td>
-                </tr>
-
-            </tbody>
-        </table>
-    </div>
 
     <div class="pagination_container container p-l-9 p-r-9 p-t-15 p-b-10 flex-sb-m pos-fixed left-0 right-0 bottom-0 z-depth-4 rounded_top_30">
        <div class="pagination_item_counts flex-l p-l-10 flex-l-m">
@@ -246,10 +194,11 @@
 
 </section>
 
-<section id="test_section" class="grey" x-data="{massage:'I Love Programing'}">
-    <span x-text="massage" class="red"></span>
-    <button class="btn brown" x-on:click="massage='I Love Alpine'">click</button>
-</section>
+
+
+
+
+
 
 <div class="add_user_modal_back dis-none"></div>
 <div class="add_user_modal container rounded_top_30 trans-0-3">
@@ -281,9 +230,11 @@
 
 <!-- ----content section ---end------ -->
 
+    <script  src="/assets/js/axios.js"></script>
     <script defer src="/assets/js/alpine.js"></script>
+    <script  src="/assets/js/alpinejsContoller/userscontroller.js"></script>
     <script src="/assets/materialize/js/materialize.min.js"></script>
     <script src="/assets/js/app.js"></script>
     <script src="/assets/js/user.js"></script>
 </body>
-</html>
+</html>  
