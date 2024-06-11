@@ -58,7 +58,8 @@
     <!-- ---add button--- -->
 
     <div class="p-l-10 p-r-10 p-t-10 col s12 m4 l2">
-        <button id="add_user_button" class="waves-effect waves-light btn blue darken-2 p-l-30 p-r-30 w-full rounded_pill flex-c">
+        <button id="add_user_button" class="waves-effect waves-light btn blue darken-2 p-l-30 p-r-30 w-full rounded_pill flex-c"
+        x-on:click="showAddModal=true">
             <i class="material-icons m-r-5">add</i>
             Add User
         </button>
@@ -67,8 +68,9 @@
     <!-- ----search section---- -->
 
     <div class="row  col s12 m8 l8 m-b-0">
-        <div class="input-field col s12">
-            <input id="search" type="text" class="validate">
+        <div class="input-field col s12"
+        x-init="$watch('searchChar' , (value)=>handleSearch(value))" >
+            <input id="search" type="text" class="validate" x-model="searchChar">
             <label for="search">
                 <i class="material-icons pos-relative top-7">search</i>
                 search
@@ -101,7 +103,7 @@
 
 <section class="user_list_section" x-init="getUsers()">
     <ul class="collapsible hide-on-med-and-up">
-        <template x-for="user in users">
+        <template x-for="user in pageUsers">
             <li class="users_list_item">
                 <div class="collapsible-header">
                     <i class="material-icons blue-text darken-2 users_list_arrow_icon trans-0-2">
@@ -120,12 +122,13 @@
                     </div>
                     <div class="p-all-5">
                         <span class="f-bold">Address : </span>
-                        <span x-text="user.address.city+' - '+user.address.street"></span>
+                        <span x-text="(user.address?.city  || '') +' - '+ (user.address?.street || '')"></span>
                     </div>
                     <div class="p-all-5 flex-l-m">
                         <span class="f-bold">Action : </span>
                         <span>
-                            <i class="material-icons red-text accent-4 m-l-5 m-r-5">
+                            <i class="material-icons red-text accent-4 m-l-5 m-r-5"
+                            x-on:click="handleDeleteUser(user.id)">
                                 delete_forever
                             </i>
                             <i class="material-icons amber-text accent-4 m-l-5 m-r-5">
@@ -152,15 +155,15 @@
                 </tr>
             </thead>
             <tbody class="desktop_table_body ">
-                <template x-for="user in users">
+                <template x-for="user in pageUsers">
                         <tr>
                             <td x-text="user.id"></td>
                             <td x-text="user.name"></td>
                             <td x-text="user.username"></td>
                             <td x-text="user.email"></td>
-                            <td x-text="user.address.city+' - '+user.address.street"></td>
+                            <td x-text="(user.address?.city  || '') +' - '+ (user.address?.street || '')" ></td>
                             <td>
-                                <i class="material-icons red-text accent-4 m-l-5 m-r-5">
+                                <i class="material-icons red-text accent-4 m-l-5 m-r-5" x-on:click=" handleDeleteUser(user.id)">
                                 delete_forever
                                 </i>
                                 <i class="material-icons amber-text accent-4 m-l-5 m-r-5">
@@ -178,17 +181,25 @@
     <div class="pagination_container container p-l-9 p-r-9 p-t-15 p-b-10 flex-sb-m pos-fixed left-0 right-0 bottom-0 z-depth-4 rounded_top_30">
        <div class="pagination_item_counts flex-l p-l-10 flex-l-m">
         Showing
-        <span class="m-l-5 m-r-5 max-w-50">
-            <input type="number" class="blue-text darken-2 no-border center-align m-b-0" value="10">
+        <span class="m-l-5 m-r-5 max-w-50 pos-relative top-4">
+            <input type="number" class="blue-text darken-2 no-border center-align m-b-0" 
+             x-on:change="handleChangeItemCount($el)" x-bind:value="itemCount" >
         </span>
         of
-        <span class="blue-text darken-2 m-l-5 m-r-5">100</span>
+        <span class="blue-text darken-2 m-l-5 m-r-5" x-text="users.length"></span>
        </div> 
 
 
+       <strong x-text="currentPage" class="blue-text page_number"></strong>
+
+
        <div class="pgination_buttons">
-        <i class="material-icons blue darken-2 m-l-5 m-r-5 p-l-5 p-r-5 p-t-1 p-b-3 waves-effect waves-light white-text rounded_pill">keyboard_arrow_right</i>
-        <i class="material-icons blue darken-2 m-l-5 m-r-5 p-l-5 p-r-5 p-t-1 p-b-3 waves-effect waves-light white-text rounded_pill">keyboard_arrow_left</i>
+        <i class="material-icons blue darken-2 m-l-5 m-r-5 p-l-5 p-r-5 p-t-1 p-b-3 
+        waves-effect waves-light white-text rounded_pill" x-on:click="prevPage()">
+            keyboard_arrow_right</i>
+        <i class="material-icons blue darken-2 m-l-5 m-r-5 p-l-5 p-r-5 p-t-1 p-b-3
+         waves-effect waves-light white-text rounded_pill"  x-on:click="nextPage()">
+            keyboard_arrow_left</i>
        </div>
     </div>
 
@@ -198,35 +209,48 @@
 
 
 
-
-
-<div class="add_user_modal_back dis-none"></div>
-<div class="add_user_modal container rounded_top_30 trans-0-3">
+<div class="add_user_modal_back" x-show="showAddModal" x-transition  x-on:click="showAddModal=false"></div>
+<div class="add_user_modal container rounded_top_30 trans-0-3" x-bind:class="showAddModal && 'show'">
     <div class="row p-t-10 p-b-10 p-r-40 p-l-40 center-on-small-only">
         <h5>
             <i class="material-icons m-r-10 m-l-10 pos-relative top-4">person_add</i>
             Add User
         </h5>
+
+
+
         <form>
+
             <div class="input-field col s12">
-                <input id="name" type="text" class="validate" />
+                <input id="name" type="text" class="validate" x-model="newUserInfo.name"/>
                 <label for="name">Name :</label>
             </div>
+
             <div class="input-field col s12">
-                <input id="username" type="text" class="validate" />
+                <input id="username" type="text" class="validate" x-model="newUserInfo.username" />
                 <label for="username">Username :</label>
             </div>
+
             <div class="input-field col s12">
-                <input id="email" type="text" class="validate" />
+                <input id="email" type="text" class="validate" x-model="newUserInfo.email" />
                 <label for="email">Email :</label>
             </div>
-            <button type="button" class="waves-effect waves-light btn blue darken-1 m-t-20 m-b-10 w-full max-w-250 rounded_pill">
+
+            <button type="button" class="waves-effect waves-light btn blue darken-1 m-t-20 m-b-10 w-full max-w-250 
+            rounded_pill "
+             x-on:click="handleSubmitAddUserForm()"
+             x-bind:class="{pulse : isloading}"
+             x-bind:disable=" isloading">
                 Submit
             </button>
 
         </form>
+
+
+
     </div>
 </div>
+
 
 <!-- ----content section ---end------ -->
 
